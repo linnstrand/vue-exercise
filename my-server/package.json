@@ -1,0 +1,10 @@
+{
+  "name": "my-server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
