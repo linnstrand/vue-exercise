@@ -27,9 +27,9 @@ const exercisesLegs = [
 ];
 
 const workouts = [
-  { name: 'push', exercises: exercisesPush },
-  { name: 'pull', exercises: exercisesPull },
-  { name: 'legs', exercises: exercisesLegs },
+  { id: 1, name: 'Push', exercises: exercisesPush },
+  { id: 2, name: 'Pull', exercises: exercisesPull },
+  { id: 3, name: 'Legs', exercises: exercisesLegs },
 ];
 
 
