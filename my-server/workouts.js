@@ -8,21 +8,20 @@ const exercisesPush = [
 ];
 
 const exercisesPull = [
-  { name: 'Pulldown', mainMuscle: '', equipment: '' },
-  { name: 'Bent-Over Row', mainMuscle: '', equipment: '' },
-  { name: 'Back Extensions', mainMuscle: '', equipment: '' },
-  { name: 'Barbell Curl', mainMuscle: '', equipment: '' },
-  { name: 'Cable Face Pulls', mainMuscle: '', equipment: '' },
+  { name: 'Pulldown', mainMuscle: 'shoulders', equipment: 'cable' },
+  { name: 'Bent-Over Row', mainMuscle: 'shoulders', equipment: 'dumbbel' },
+  { name: 'Back Extensions', mainMuscle: 'back', equipment: 'other' },
+  { name: 'Barbell Curl', mainMuscle: 'biceps', equipment: 'barbell' },
+  { name: 'Cable Face Pulls', mainMuscle: 'soulders', equipment: 'cable' },
 ];
 
 const exercisesLegs = [
-  { name: 'Hip Thrusts', mainMuscle: '', equipment: '' },
-  { name: 'Bulgarian Squat', mainMuscle: '', equipment: '' },
-  { name: 'Leg Press', mainMuscle: '', equipment: '' },
-  { name: 'Leg Curl', mainMuscle: '', equipment: '' },
-  { name: 'Calf raises', mainMuscle: '', equipment: '' },
-
-  { name: 'Donkey Kick', mainMuscle: '', equipment: '' },
+  { name: 'Hip Thrusts', mainMuscle: 'glutes', equipment: 'barbell' },
+  { name: 'Bulgarian Squat', mainMuscle: 'legs', equipment: 'other' },
+  { name: 'Leg Press', mainMuscle: 'quads', equipment: 'machine' },
+  { name: 'Leg Curl', mainMuscle: 'hamstrings', equipment: 'machine' },
+  { name: 'Calf raises', mainMuscle: 'calves', equipment: 'bodyweight' },
+  { name: 'Donkey Kick', mainMuscle: 'glutes', equipment: 'cable' },
 
 ];
 
@@ -33,4 +32,4 @@ const workouts = [
 ];
 
 
-module.exports= workouts;
+module.exports = workouts;
