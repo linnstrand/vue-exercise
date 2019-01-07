@@ -3,24 +3,22 @@
     <div v-if="workout">
       <h2>{{workout.name}}</h2>
       <div>
-        <ul class="list-reset">
-          <li v-for="(exercise, index) in workout.exercises" :key="index">
-            <div class="flex">
-              <div class="w-1/4">
-                <h3>{{exercise.name}}</h3>
-                <div>{{exercise.mainMuscle}}, {{exercise.equipment}}</div>
-              </div>
-              <div class="form-element">
-                <label for="weight">Weight</label>
-                <input type="number" name="weight" id="weight">
-              </div>
-              <div class="form-element">
-                <input type="number" name="sets" id="sets"> /
-                <input type="number" name="reps" id="reps">
-              </div>
-            </div>
-          </li>
-        </ul>
+        <table class="table-auto">
+          <tr v-for="(exercise, index) in workout.exercises" :key="index">
+            <td class="pr-5">
+              <h3>{{exercise.name}}</h3>
+              <div>{{exercise.mainMuscle}}, {{exercise.equipment}}</div>
+            </td>
+            <td class="pr-2">
+              <label for="weight">Weight</label>
+              <input type="number" name="weight" id="weight">
+            </td>
+            <td class="pr-2">
+              <input type="number" name="sets" id="sets"> /
+              <input type="number" name="reps" id="reps">
+            </td>
+          </tr>
+        </table>
       </div>
       <button @click="saveWorkout(workout)">Save</button>
     </div>
@@ -60,7 +58,7 @@ input {
   display: inline-block;
   width: 5rem;
   padding: 0.375rem 0.75rem;
-  margin: 0.5rem;
+  margin: 0.5rem 0.25rem;
   line-height: 1.5;
   color: #495057;
   background-color: #fff;
