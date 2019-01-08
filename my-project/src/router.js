@@ -3,6 +3,9 @@ import Router from 'vue-router';
 import HomePage from './Home/HomePage.vue';
 import GymPage from './Gym/GymPage.vue';
 import WorkoutPage from './Gym/WorkoutPage.vue';
+import NavGym from './NavBar/NavGym.vue';
+import NavStandard from './NavBar/NavStandard.vue';
+
 
 Vue.use(Router);
 
@@ -12,12 +15,18 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: HomePage,
+      components: {
+        default: HomePage,
+        navigation: NavStandard,
+      },
     },
     {
       path: '/gym',
       name: 'gym',
-      component: GymPage,
+      components: {
+        default: GymPage,
+        navigation: NavGym,
+      },
     },
     {
       path: '/workout/:id',

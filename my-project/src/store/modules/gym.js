@@ -3,7 +3,8 @@ import axios from 'axios';
 export default {
   namespaced: true,
   state: {
-    workouts: [],
+    // state always namespeced in module
+    workouts: null,
     workout: null,
   },
   mutations: {
@@ -14,23 +15,33 @@ export default {
       state.workouts.push(workout);
     },
     setWorkout(state, id) {
-      state.workout = state.workouts.filter(w => w.id === id);
+      state.workout = state.workouts ? state.workouts.find(w => w.id === id) : null;
     },
   },
   actions: {
     getWorkouts({ commit }) {
-      axios.get('/api/workouts')
-        .then(result => commit('updateWorkouts', result.data))
+      return axios.get('/api/workouts')
+        .then((result) => {
+          commit('updateWorkouts', result.data);
+        })
         .catch(console.error);
     },
     saveWorkout({ commit }, workout) {
       return axios.post('api/workout', workout)
         .then(() => commit('addWorkout', workout));
     },
+    getWorkout({ commit, state, dispatch }, id) {
+      if (state.workouts) {
+        commit('setWorkout', id);
+      } else {
+        dispatch('getWorkouts').then(() => {
+          commit('setWorkout', id);
+        })
+          .catch(console.error);
+      }
+    },
   },
   getters: {
-    getWorkout(state) {
-      return state.workout;
-    },
+    getWorkout: state => state.workout || {},
   },
 };

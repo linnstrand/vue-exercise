@@ -20,36 +20,39 @@
           </tr>
         </table>
       </div>
-      <button @click="saveWorkout(workout)">Save</button>
+      <button @click="save()">Save</button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   props: {
     id: {
-      type: String | Number,
+      type: [String || Number],
       validator(value) {
         return Number.isInteger(Number(value));
-      }
-    }
+      },
+    },
   },
   created() {
-    this.$store.commit("gym/setWorkout", +this.id);
+    this.getWorkout(+this.id);
   },
   methods: {
-    saveWorkout(workout) {
-      this.$store
-        .dispatch("gym/saveWorkout", Object.assign({}, workout))
-        .then(console.log("Saved Successfully"));
-    }
+    ...mapActions('gym', ['saveWorkout']),
+    ...mapActions('gym', ['getWorkout']),
+    save() {
+      this.saveWorkout(Object.assign({}, this.workout))
+        .then(console.log('Saved Successfully'));
+    },
   },
   computed: {
     workout() {
-      return this.$store.getters["gym/getWorkout"][0];
-    }
-  }
+      return this.$store.state.gym.workout;
+    },
+  },
 };
 </script>
 

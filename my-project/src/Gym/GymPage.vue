@@ -20,16 +20,12 @@
 </template>
 
 <script>
+// import { mapActions } from 'vuex';
+import workoutsMixin from './get-workouts-mixin';
+
 export default {
   name: 'gym',
-  created() {
-    this.$store.dispatch('gym/getWorkouts');
-  },
-  computed: {
-    availableWorkouts() {
-      return this.$store.state.gym.workouts || [];
-    },
-  },
+  mixins: [workoutsMixin],
 };
 </script>
 
