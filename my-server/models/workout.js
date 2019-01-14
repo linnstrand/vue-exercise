@@ -3,9 +3,7 @@ const Schema = mongoose.Schema
 
 const workoutSchema = new Schema({
   name: { type: String, required: true },
-  mainMuscle: String,
-  equipment: String,
-  exercises: Array
+  exercises: [{ type: Schema.Types.ObjectId, ref: 'Exercise' }]
 })
 
 const Workout = mongoose.model('Workout', workoutSchema)
