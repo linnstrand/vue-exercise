@@ -24,6 +24,9 @@
 </template>
 
 <style>
+html {
+  font-family: verdana;
+}
 .navbar-item {
   text-decoration: none;
   color: #3490dc;

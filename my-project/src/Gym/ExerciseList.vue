@@ -19,15 +19,15 @@
         </div>
       </div>
       <div v-if="isActive==='equipment' || this.isActive === 'muscle'"
-           class="flex flex-wrap">
-        <div class="group m-2 p-2"
+           class="">
+        <div class="m-2"
              v-for="(group, index) in exercises"
              :key="index">
-          <h4>
+          <h4 class="capitalize pb-1">
             {{group.name}}
           </h4>
-          <ul>
-            <li v-for="(exercise, index) in group.exercises"
+          <ul class="text-xs list-reset">
+            <li class="font-bold border p-1 m-1 inline-block" v-for="(exercise, index) in group.exercises"
                 :key="index">{{exercise.name}}</li>
           </ul>
         </div>
@@ -89,8 +89,5 @@ export default {
 }
 .exercise {
   min-width: 175px;
-}
-.group {
-  min-width: 250px;
 }
 </style>
