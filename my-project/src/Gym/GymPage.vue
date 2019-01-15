@@ -16,6 +16,8 @@
         </router-link>
       </div>
     </div>
+    <div v-if="availableWorkouts.length===0">No workouts created yet. Check out <router-link to="exercises">exercise list</router-link>
+    </div>
   </div>
 </template>
 

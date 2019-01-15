@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import HomePage from './Home/HomePage.vue';
 import GymPage from './Gym/GymPage.vue';
 import WorkoutPage from './Gym/WorkoutPage.vue';
+import ExerciseList from './Gym/ExerciseList.vue';
 import NavGym from './NavBar/NavGym.vue';
 import NavStandard from './NavBar/NavStandard.vue';
 
@@ -33,6 +34,11 @@ export default new Router({
       name: 'workout',
       component: WorkoutPage,
       props: true,
+    },
+    {
+      path: '/exercises',
+      name: 'exercises',
+      component: ExerciseList,
     },
   ],
 });

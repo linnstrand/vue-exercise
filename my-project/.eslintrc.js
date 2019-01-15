@@ -10,7 +10,8 @@ module.exports = {
   rules: {
     "linebreak-style": 0,
     "no-param-reassign": 0,
-    "max-len": 0
+    "max-len": 0,
+    'no-nested-ternary': 0
   },
   parserOptions: {
     parser: "babel-eslint"
