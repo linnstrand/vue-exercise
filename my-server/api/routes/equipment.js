@@ -33,9 +33,9 @@ module.exports = (router) => {
 
   router.put('/equipment', (req, res) => {
     console.log(req.body)
-    let query = { _id: req.params.id }
+    let query = { _id: req.body._id }
     let doc = {
-      isActive: req.body.isActive
+      name: req.body.name
     }
     Equipment.update(query, doc, (err, respRaw) => {
       if (err) return console.log(err)

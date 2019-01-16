@@ -56,8 +56,8 @@ export default {
 };
 </script>
 
-<style>
-input {
+<style >
+input[type='number'] {
   display: inline-block;
   width: 5rem;
   padding: 0.375rem 0.75rem;

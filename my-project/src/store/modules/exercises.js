@@ -21,8 +21,17 @@ export default {
     sortByMuscle(state) {
       state.groups = helpers.getGroupedOn(state.exercises, 'mainMuscle');
     },
-    updateEquipment(state, equipment) {
+    setEquipment(state, equipment) {
       state.equipment = equipment;
+    },
+    updateEquipment(state, item) {
+      const changed = state.equipment.find(e => e.id === item.id);
+      if (changed.id) {
+        changed.name = item.name;
+      }
+    },
+    addEquipment(state, equipment) {
+      state.equipment.push(equipment);
     },
   },
   actions: {
@@ -38,9 +47,22 @@ export default {
       return axios.get('/api/equipment')
         .then((result) => {
           console.log(result);
-          commit('updateEquipment', result.data);
+          commit('setEquipment', result.data);
         })
         .catch(console.error);
+    },
+    saveEquipment({ commit }, equipment) {
+      return axios.post('api/equipment', equipment)
+        .then(() => commit('addEquipment', equipment));
+    },
+    editEquipment({ commit }, item) {
+      return axios.put('api/equipment', item)
+        .then((response) => {
+          if (response.data.ok === 1) {
+            commit('updateEquipment', item);
+            return true;
+          }
+        });
     },
   },
 };
