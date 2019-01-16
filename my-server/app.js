@@ -17,7 +17,7 @@ app.use(morgan('dev'))
 
 app.use((req, res, next) => {
   const err = new Error('Not Found')
-  err.status = 404
+  res.status = 404
   res.json(err)
 })
 

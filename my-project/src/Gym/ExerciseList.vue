@@ -4,8 +4,8 @@
       <div class="flex flex-wrap display-choices">
         <div class="self-center">Display by:</div>
         <button :class="{isActive: isActive==='name'}" @click="sortName()">Name</button>
-        <button :class="{isActive: isActive==='equipment'}" @click="sortEquipment()">Equipment</button>
-        <button :class="{isActive: isActive==='muscle'}" @click="sortMuscle()">Main Muscle</button>
+        <button :class="{isActive: isActive==='equipment'}" @click="sortByEquipment()">Equipment</button>
+        <button :class="{isActive: isActive==='muscle'}" @click="sortByMuscle()">Main Muscle</button>
       </div>
       <div v-if="isActive==='name'" class="flex flex-wrap">
         <div
@@ -37,35 +37,36 @@
 
 <script>
 // import { mapActions } from 'vuex';
+
 export default {
-  name: 'gym',
+  name: 'exercises',
   data() {
     return {
       isActive: 'name',
     };
   },
   created() {
-    this.$store.dispatch('gym/getExercises');
+    this.$store.dispatch('exercises/getAll');
   },
   computed: {
     exercises() {
       if (this.isActive === 'equipment' || this.isActive === 'muscle') {
-        return this.$store.state.gym.groups || [];
+        return this.$store.state.exercises.groups || [];
       }
-      return this.$store.state.gym.exercises || [];
+      return this.$store.state.exercises.exercises || [];
     },
   },
   methods: {
     sortName() {
-      this.$store.commit('gym/sortExerciseName');
+      this.$store.commit('exercises/sortByName');
       this.isActive = 'name';
     },
-    sortEquipment() {
-      this.$store.commit('gym/sortEquipment');
+    sortByEquipment() {
+      this.$store.commit('exercises/sortByEquipment');
       this.isActive = 'equipment';
     },
-    sortMuscle() {
-      this.$store.commit('gym/sortMuscle');
+    sortByMuscle() {
+      this.$store.commit('exercises/sortByMuscle');
       this.isActive = 'muscle';
     },
   },
