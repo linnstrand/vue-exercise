@@ -1,8 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import AdminPage from './Admin/AdminPage.vue';
 import HomePage from './Home/HomePage.vue';
 import GymPage from './Gym/GymPage.vue';
 import WorkoutPage from './Gym/WorkoutPage.vue';
+import WorkoutCreate from './Gym/WorkoutCreate.vue';
 import ExerciseList from './Gym/ExerciseList.vue';
 import NavGym from './NavBar/NavGym.vue';
 import NavStandard from './NavBar/NavStandard.vue';
@@ -10,7 +12,7 @@ import NavStandard from './NavBar/NavStandard.vue';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -20,6 +22,14 @@ export default new Router({
         default: HomePage,
         navigation: NavStandard,
       },
+    }, {
+      path: '/admin',
+      name: 'admin',
+      components: {
+        default: AdminPage,
+        navigation: NavStandard,
+      },
+      meta: { requiresAuth: true },
     },
     {
       path: '/gym',
@@ -30,10 +40,25 @@ export default new Router({
       },
     },
     {
+      path: '/workout/create',
+      name: 'create',
+      components: {
+        default: WorkoutCreate,
+        navigation: NavGym,
+      },
+    },
+    {
       path: '/workout/:id',
       name: 'workout',
-      component: WorkoutPage,
+      components: {
+        deafault: WorkoutPage,
+        navigation: NavGym,
+      },
       props: true,
+      beforeEnter(to, from, next) {
+        const isValidId = Number.isInteger(Number(to.params.id));
+        next(isValidId);
+      },
     },
     {
       path: '/exercises',
@@ -42,3 +67,19 @@ export default new Router({
     },
   ],
 });
+
+// TODO use token from backend when available.
+const user = { isAdmin: true };
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (user.isAdmin) {
+      next();
+    } else {
+      next(false);
+    }
+  } else {
+    next();
+  }
+});
+
+export default router;
