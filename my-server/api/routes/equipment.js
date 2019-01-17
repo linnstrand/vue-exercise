@@ -32,12 +32,19 @@ module.exports = (router) => {
   })
 
   router.put('/equipment', (req, res) => {
-    console.log(req.body)
     let query = { _id: req.body._id }
     let doc = {
       name: req.body.name
     }
     Equipment.update(query, doc, (err, respRaw) => {
+      if (err) return console.log(err)
+      res.status(200).json(respRaw)
+    })
+  })
+
+  router.delete('/equipment/:id', (req, res) => {
+    let query = { _id: req.params.id }
+    Equipment.deleteOne(query, (err, respRaw) => {
       if (err) return console.log(err)
       res.status(200).json(respRaw)
     })
