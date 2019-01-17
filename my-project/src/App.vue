@@ -27,6 +27,11 @@
 html {
   font-family: verdana;
 }
+button {
+  padding: 0.375rem 0.75rem;
+  color: #3490dc;
+  border: 1px solid #3490dc;
+}
 .navbar-item {
   text-decoration: none;
   color: #3490dc;

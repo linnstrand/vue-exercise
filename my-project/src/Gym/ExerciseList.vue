@@ -74,10 +74,7 @@ export default {
 </script>
 <style>
 .display-choices > button {
-  padding: 0.375rem 0.75rem;
   margin: 0.5rem 0.25rem;
-  color: #3490dc;
-  border: 1px solid #3490dc;
 }
 .display-choices > button.isActive {
   color: white;

@@ -62,6 +62,7 @@ export default {
             commit('updateEquipment', item);
             return true;
           }
+          return false;
         });
     },
   },
