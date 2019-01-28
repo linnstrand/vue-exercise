@@ -27,6 +27,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import equipmentMixin from '../get-equipment-mixin';
 
 export default {
   data() {
@@ -37,15 +38,7 @@ export default {
       showEquipment: false
     };
   },
-  created() {
-    this.$store.dispatch("equipment/getAll");
-  },
-  computed: {
-    equipment() {
-      return this.$store.state.equipment.equipment || [];
-    }
-  },
-
+  mixins: [equipmentMixin],
   methods: {
     ...mapActions("equipment", ["create"]),
     ...mapActions("equipment", ["edit"]),
