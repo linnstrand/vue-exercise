@@ -1,43 +1,12 @@
 <template>
   <div class="admin">
-    <div class="content">
-      <h4 class="mb-3">Admin Equipment Options</h4>
-      <form class="mb-5" id="newEquipmentForm" @submit="newFormCheck">
-        <label class="block mb-2" for="new-equipment">New</label>
-        <input
-          class="border rounded py-2 px-4 leading-tight"
-          id="new-equipment"
-          type="text"
-          v-model="newEquipment">
-        <button
-          class="border rounded py-2 px-4 ml-2 leading-tight"
-          type="submit"
-          @click="newFormCheck($event)">Add</button>
-        <div
-          class="inline-block border rounded py-2 px-4 ml-2 leading-tight border border-green text-green"
-          v-if="saveSuccess"
-        >Success!</div>
-      </form>
-      <div v-if="equipment.length > 0">
-        <h4 class="block mb-2">Edit</h4>
-        <div class="mb-2" v-for="(item, index) in equipment" :key="index">
-          <input
-            class="border rounded py-2 px-4 leading-tight"
-            id="new-equipment"
-            type="text"
-            v-model="item.name">
-          <button
-            class="border rounded py-2 px-4 ml-2 leading-tight"
-            type="button"
-            @click="editFormCheck(item)">Edit</button>
-           <button
-            class="border rounded py-2 px-4 ml-2 leading-tight border-red text-red"
-            type="button"
-            @click="deleteItem(item)">Delete</button>
-          <div
-            class="inline-block border rounded py-2 px-4 ml-2 leading-tight border border-green text-green"
-            v-if="editSuccess === item.name">Success!</div>
-        </div>
+    <h1>Site Administration</h1>
+    <div class="flex content">
+      <div class="flex-1">
+        <EquipmentEdit></EquipmentEdit>
+      </div>
+      <div class="flex-1">
+        <ExercisesEdit></ExercisesEdit>
       </div>
     </div>
   </div>
@@ -45,14 +14,19 @@
 
 <script>
 import { mapActions } from 'vuex';
+import ExercisesEdit from '../components/ExercisesEdit.vue';
+import EquipmentEdit from '../components/EquipmentEdit.vue';
 
 export default {
   name: 'AdminPage',
+  components: { EquipmentEdit, ExercisesEdit },
   data() {
     return {
       newEquipment: null,
       editSuccess: '',
       saveSuccess: null,
+      showEquipment: false,
+      showExercises: false,
     };
   },
   created() {
