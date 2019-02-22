@@ -1,0 +1,22 @@
+## Folder Structure
+- assets - fonts, images,...
+- config - main config with router config...
+- components - components that are globally used
+- i18n - localizations
+- layout
+- - Header.vue
+- - Footer.vue
+- routes (recursive with auto discovery) 
+- store - Vuex
+- styles - SASS, vendors
+- utils 
+- - directives
+- - filters
+- - services
+- views - router views
+- - Dashboard.vue
+- - User
+- - - Detail.vue
+- - - Edit.vue
+- App.vue - unlogged main template used by router
+- View.vue - logged main template used by router

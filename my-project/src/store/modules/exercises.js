@@ -4,21 +4,21 @@ import helpers from './store-helpers';
 export default {
   namespaced: true,
   state: {
-    exercises: null,
+    all: null,
     groups: null,
   },
   mutations: {
     update(state, exercises) {
-      state.exercises = exercises;
+      state.all = exercises;
     },
     sortByName(state) {
-      state.exercises = state.exercises.sort((a, b) => (a.name > b.name ? 1 : a.name < b.name ? -1 : 0));
+      state.all = state.all.sort((a, b) => (a.name > b.name ? 1 : a.name < b.name ? -1 : 0));
     },
     sortByEquipment(state) {
-      state.groups = helpers.getGroupedOn(state.exercises, 'equipment');
+      state.groups = helpers.getGroupedOn(state.all, 'equipment');
     },
     sortByMuscle(state) {
-      state.groups = helpers.getGroupedOn(state.exercises, 'mainMuscle');
+      state.groups = helpers.getGroupedOn(state.all, 'mainMuscle');
     },
   },
   actions: {

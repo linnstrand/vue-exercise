@@ -1,14 +1,13 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import AdminPage from './Admin/AdminPage.vue';
-import HomePage from './Home/HomePage.vue';
-import GymPage from './Gym/GymPage.vue';
-import WorkoutPage from './Gym/WorkoutPage.vue';
-import WorkoutCreate from './Gym/WorkoutCreate.vue';
-import ExerciseList from './Gym/ExerciseList.vue';
-import NavGym from './NavBar/NavGym.vue';
-import NavStandard from './NavBar/NavStandard.vue';
-
+import AdminPage from './views/AdminPage.vue';
+import HomePage from './views/HomePage.vue';
+import GymPage from './views/GymPage.vue';
+import WorkoutPage from './views/WorkoutPage.vue';
+import WorkoutCreate from './components/WorkoutCreate.vue';
+import ExerciseList from './components/ExerciseList.vue';
+import NavGym from './components/NavBars/NavGym.vue';
+import NavStandard from './components/NavBars/NavStandard.vue';
 
 Vue.use(Router);
 
@@ -22,7 +21,8 @@ const router = new Router({
         default: HomePage,
         navigation: NavStandard,
       },
-    }, {
+    },
+    {
       path: '/admin',
       name: 'admin',
       components: {

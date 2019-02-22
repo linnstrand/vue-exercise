@@ -18,6 +18,3 @@ export default {
   name: 'NavGym',
 };
 </script>
-
-<style>
-</style>

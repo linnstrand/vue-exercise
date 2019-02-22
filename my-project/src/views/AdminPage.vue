@@ -47,7 +47,7 @@
 import { mapActions } from 'vuex';
 
 export default {
-  name: 'admin',
+  name: 'AdminPage',
   data() {
     return {
       newEquipment: null,
