@@ -7,14 +7,14 @@
         <button :class="{groupedOn: groupedOn==='equipment'}" @click="sortByEquipment()">Equipment</button>
         <button :class="{groupedOn: groupedOn==='muscle'}" @click="sortByMuscle()">Main Muscle</button>
       </div>
-      <div v-if="groupedOn==='name'" class="flex flex-wrap">
+      <div v-show="groupedOn==='name'" class="flex flex-wrap">
         <div
           class="exercise my-3 mx-1 p-2 border border-grey shadow hover:bg-blue-lightest"
           v-for="(exercise, index) in exercises"
           :key="index"
         >{{exercise.name}}</div>
       </div>
-      <div class="flex flex-wrap" v-if="groupedOn==='equipment' || this.groupedOn === 'muscle'">
+      <div class="flex flex-wrap" v-show="groupedOn==='equipment' || this.groupedOn === 'muscle'">
           <ExerciseListGroup
             :groupedOn="groupedOn"
             v-for="(group, index) in groups"

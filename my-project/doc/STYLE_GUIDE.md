@@ -61,4 +61,4 @@ Properties should always use camelCase during declarations and kebab-case in tem
 * Attributes should have their own line.
 * Use only simple expressions.
 * Attributes should always be inside quotes. (Preferdly double quotes in HTML and single quotes in JS).
-* Directive shorthands: `:` for `v--bind:` and `@`for `v-on:`.
+* Directive shorthands: `:` for `v-bind:` and `@`for `v-on:`.
