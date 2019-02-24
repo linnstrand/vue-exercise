@@ -1,10 +1,10 @@
 <template>
-    <div>Create workout page</div>
+  <div>Create workout page</div>
 </template>
 
 <script>
 export default {
-  name: 'create',
+  name: 'Create',
 };
 </script>
 

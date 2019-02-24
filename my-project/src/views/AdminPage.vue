@@ -3,10 +3,10 @@
     <h1>Site Administration</h1>
     <div class="flex content">
       <div class="flex-1">
-        <EquipmentEdit></EquipmentEdit>
+        <EquipmentEdit />
       </div>
       <div class="flex-1">
-        <ExercisesEdit></ExercisesEdit>
+        <ExercisesEdit />
       </div>
     </div>
   </div>
@@ -29,13 +29,13 @@ export default {
       showExercises: false,
     };
   },
-  created() {
-    this.$store.dispatch('equipment/getAll');
-  },
   computed: {
     equipment() {
       return this.$store.state.equipment.equipment || [];
     },
+  },
+  created() {
+    this.$store.dispatch('equipment/getAll');
   },
 
   methods: {

@@ -1,26 +1,35 @@
 <template>
   <div class="workout">
     <div v-if="workout">
-      <h2>{{workout.name}}</h2>
+      <h2>{{ workout.name }}</h2>
       <div>
         <table class="table-auto">
-          <tr v-for="(exercise, index) in workout.exercises" :key="index">
+          <tr v-for="(exercise, index) in workout.exercises"
+              :key="index">
             <td class="pr-5">
-              <h3>{{exercise.name}}</h3>
-              <div>{{exercise.mainMuscle}}, {{exercise.equipment}}</div>
+              <h3>{{ exercise.name }}</h3>
+              <div>{{ exercise.mainMuscle }}, {{ exercise.equipment }}</div>
             </td>
             <td class="pr-2">
               <label for="weight">Weight</label>
-              <input type="number" name="weight" id="weight">
+              <input id="weight"
+                     type="number"
+                     name="weight">
             </td>
             <td class="pr-2">
-              <input type="number" name="sets" id="sets"> /
-              <input type="number" name="reps" id="reps">
+              <input id="sets"
+                     type="number"
+                     name="sets"> /
+              <input id="reps"
+                     type="number"
+                     name="reps">
             </td>
           </tr>
         </table>
       </div>
-      <button @click="save()">Save</button>
+      <button @click="save()">
+        Save
+      </button>
     </div>
   </div>
 </template>

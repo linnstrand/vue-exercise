@@ -58,7 +58,6 @@ Always use the $_ prefix for custom private properties in a plugin, mixin, etc. 
 Properties should always use camelCase during declarations and kebab-case in templates/jsx
 
 ### Elements
-* Attributes should have their own line.
 * Use only simple expressions.
 * Attributes should always be inside quotes. (Preferdly double quotes in HTML and single quotes in JS).
 * Directive shorthands: `:` for `v-bind:` and `@`for `v-on:`.

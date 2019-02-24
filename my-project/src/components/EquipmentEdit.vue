@@ -1,24 +1,57 @@
 <template>
   <div>
-    <h4 class="mb-3">Equipment Options</h4>
+    <h4 class="mb-3">
+      Equipment Options
+    </h4>
     <button @click="showEquipment = !showEquipment">
       <span v-show="!showEquipment">Show</span>
       <span v-show="showEquipment">Hide</span>
     </button>
     <div v-show="showEquipment">
-      <form class="mb-5" id="newEquipmentForm" @submit="newFormCheck">
-        <label class="block mb-2" for="new-equipment">New</label>
-        <input class="border rounded py-2 px-4 leading-tight" id="new-equipment" type="text" v-model="newEquipment">
-        <button class="border rounded py-2 px-4 ml-2 leading-tight" type="submit" @click="newFormCheck($event)">Add</button>
-        <div class="inline-block border rounded py-2 px-4 ml-2 leading-tight border border-green text-green" v-if="saveSuccess">Success!</div>
+      <form id="newEquipmentForm"
+            class="mb-5"
+            @submit="newFormCheck">
+        <label class="block mb-2"
+               for="new-equipment">New</label>
+        <input id="new-equipment"
+               v-model="newEquipment"
+               class="border rounded py-2 px-4 leading-tight"
+               type="text">
+        <button class="border rounded py-2 px-4 ml-2 leading-tight"
+                type="submit"
+                @click="newFormCheck($event)">
+          Add
+        </button>
+        <div v-if="saveSuccess"
+             class="inline-block border rounded py-2 px-4 ml-2 leading-tight border border-green text-green">
+          Success!
+        </div>
       </form>
       <div v-if="equipment.length > 0">
-        <h4 class="block mb-2">Edit</h4>
-        <div class="mb-2" v-for="(item, index) in equipment" :key="index">
-          <input class="border rounded py-2 px-4 leading-tight" id="new-equipment" type="text" v-model="item.name">
-          <button class="border rounded py-2 px-4 ml-2 leading-tight" type="button" @click="editFormCheck(item)">Edit</button>
-          <button class="border rounded py-2 px-4 ml-2 leading-tight border-red text-red" type="button" @click="deleteItem(item)">Delete</button>
-          <div class="inline-block border rounded py-2 px-4 ml-2 leading-tight border border-green text-green" v-if="editSuccess === item.name">Success!</div>
+        <h4 class="block mb-2">
+          Edit
+        </h4>
+        <div v-for="(item, index) in equipment"
+             :key="index"
+             class="mb-2">
+          <input id="new-equipment"
+                 v-model="item.name"
+                 class="border rounded py-2 px-4 leading-tight"
+                 type="text">
+          <button class="border rounded py-2 px-4 ml-2 leading-tight"
+                  type="button"
+                  @click="editFormCheck(item)">
+            Edit
+          </button>
+          <button class="border rounded py-2 px-4 ml-2 leading-tight border-red text-red"
+                  type="button"
+                  @click="deleteItem(item)">
+            Delete
+          </button>
+          <div v-if="editSuccess === item.name"
+               class="inline-block border rounded py-2 px-4 ml-2 leading-tight border border-green text-green">
+            Success!
+          </div>
         </div>
       </div>
     </div>
@@ -30,6 +63,7 @@ import { mapActions } from 'vuex';
 import equipmentMixin from '../get-equipment-mixin';
 
 export default {
+  mixins: [equipmentMixin],
   data() {
     return {
       newEquipment: null,
@@ -38,7 +72,6 @@ export default {
       showEquipment: false,
     };
   },
-  mixins: [equipmentMixin],
   methods: {
     ...mapActions('equipment', ['create']),
     ...mapActions('equipment', ['edit']),

@@ -36,9 +36,10 @@ export default {
         .then(() => commit('add', equipment));
     },
     delete({ commit }, id) {
-      return axios.delete(`api/equipment/${id}`).then((response) => {
-        commit('remove', id);
-      });
+      return axios.delete(`api/equipment/${id}`)
+        .then((response) => {
+          commit('remove', id);
+        });
     },
     edit({ commit }, item) {
       return axios.put('api/equipment', item)
