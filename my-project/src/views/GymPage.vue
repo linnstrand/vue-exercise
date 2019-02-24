@@ -12,8 +12,8 @@
             {{ workout.name }}
           </h3>
           <div
-            v-for="(exercise, index) in workout.exercises"
-            :key="index"
+            v-for="(exercise, i) in workout.exercises"
+            :key="i"
             class="flex exercises py-1 text-grey-dark">
             <div class>
               {{ exercise.name }}

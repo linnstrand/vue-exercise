@@ -3,12 +3,16 @@
     <li class="mr-6">
       <router-link class="navbar-item"
                    exact
-                   :to="{name: 'create'}">New Workout</router-link>
+                   :to="{name: 'create'}">
+        New Workout
+      </router-link>
     </li>
     <li class="mr-6">
       <router-link class="navbar-item"
                    exact
-                   :to="{name: 'collection'}">My Workouts</router-link>
+                   :to="{name: 'collection'}">
+        My Workouts
+      </router-link>
     </li>
   </ul>
 </template>

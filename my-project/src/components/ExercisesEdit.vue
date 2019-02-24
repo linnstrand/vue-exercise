@@ -30,9 +30,9 @@
                   disabled>
             No equipment set
           </option>
-          <option v-for="(item, index) in equipment"
-                  :key="index"
-                  :value="item._value">
+          <option v-for="(eq, i) in equipment"
+                  :key="i"
+                  :value="eq.value">
             {{ item.name }}
           </option>
         </select>

@@ -1,18 +1,22 @@
 <template>
   <div id="app"
        class="text-black">
-    <nav class="border-b border-grey-light py-4 px-6 flex"
-         id="navbar">
+    <nav id="navbar"
+         class="border-b border-grey-light py-4 px-6 flex">
       <ul class="navbar-menu list-reset flex">
         <li class="mr-6">
           <router-link class="navbar-item"
                        exact
-                       :to="{name: 'home'}">Home</router-link>
+                       :to="{name: 'home'}">
+            Home
+          </router-link>
         </li>
         <li class="mr-6">
           <router-link class="navbar-item"
                        exact
-                       :to="{name: 'gym'}">Gym</router-link>
+                       :to="{name: 'gym'}">
+            Gym
+          </router-link>
         </li>
       </ul>
       <router-view name="navigation" />

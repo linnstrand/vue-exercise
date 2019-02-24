@@ -41,10 +41,16 @@ export default {
   props: {
     id: {
       type: [String || Number],
+      required:true,
       validator(value) {
         return Number.isInteger(Number(value));
       },
-    },
+    }
+  },
+  computed: {
+    workout() {
+      return this.$store.state.gym.workout;
+    }
   },
   created() {
     this.getWorkout(+this.id);
@@ -53,15 +59,11 @@ export default {
     ...mapActions('gym', ['saveWorkout']),
     ...mapActions('gym', ['getWorkout']),
     save() {
-      this.saveWorkout(Object.assign({}, this.workout))
-        .then(console.log('Saved Successfully'));
-    },
-  },
-  computed: {
-    workout() {
-      return this.$store.state.gym.workout;
-    },
-  },
+      this.saveWorkout(Object.assign({}, this.workout)).then(
+        console.log('Saved Successfully')
+      );
+    }
+  }
 };
 </script>
 
