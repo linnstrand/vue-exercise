@@ -2,41 +2,28 @@
   <div class="exercises">
     <div v-if="exercises.length > 0">
       <div class="flex flex-wrap display-choices">
-        <div class="self-center">
-          Display by:
-        </div>
-        <button :class="{groupedOn: groupedOn==='name'}"
-                @click="sortName()">
-          Name
-        </button>
-        <button :class="{groupedOn: groupedOn==='equipment'}"
-                @click="sortByEquipment()">
-          Equipment
-        </button>
-        <button :class="{groupedOn: groupedOn==='muscle'}"
-                @click="sortByMuscle()">
-          Main Muscle
-        </button>
+        <div class="self-center">Display by:</div>
+        <button :class="{groupedOn: groupedOn==='name'}" @click="sortName()">Name</button>
+        <button :class="{groupedOn: groupedOn==='equipment'}" @click="sortByEquipment()">Equipment</button>
+        <button :class="{groupedOn: groupedOn==='muscle'}" @click="sortByMuscle()">Main Muscle</button>
       </div>
-      <div v-show="groupedOn==='name'"
-           class="flex flex-wrap">
-        <div v-for="(exercise, index) in exercises"
-             :key="index"
-             class="exercise my-3 mx-1 p-2 border border-grey shadow hover:bg-blue-lightest">
-          {{ exercise.name }}
-        </div>
+      <div v-show="groupedOn==='name'" class="flex flex-wrap">
+        <div
+          v-for="(exercise, index) in exercises"
+          :key="index"
+          class="exercise my-3 mx-1 p-2 border border-grey shadow hover:bg-blue-lightest"
+        >{{ exercise.name }}</div>
       </div>
-      <div v-show="groupedOn==='equipment' || groupedOn === 'muscle'"
-           class="flex flex-wrap">
-        <ExerciseListGroup v-for="(group, index) in groups"
-                           :key="index"
-                           :grouped-on="groupedOn"
-                           :group="group" />
+      <div v-show="groupedOn==='equipment' || groupedOn === 'muscle'" class="flex flex-wrap">
+        <ExerciseListGroup
+          v-for="(group, index) in groups"
+          :key="index"
+          :grouped-on="groupedOn"
+          :group="group"
+        />
       </div>
     </div>
-    <div v-if="exercises.length===0">
-      No exercuses available
-    </div>
+    <div v-if="exercises.length===0">No exercuses available</div>
   </div>
 </template>
 
@@ -45,11 +32,11 @@ import ExerciseListGroup from './ExerciseListGroup.vue';
 
 export default {
   components: {
-    ExerciseListGroup,
+    ExerciseListGroup
   },
   data() {
     return {
-      groupedOn: 'name',
+      groupedOn: 'name'
     };
   },
   computed: {
@@ -58,7 +45,7 @@ export default {
     },
     exercises() {
       return this.$store.state.exercises.all || [];
-    },
+    }
   },
   created() {
     this.$store.dispatch('exercises/getAll');
@@ -76,8 +63,8 @@ export default {
     sortByMuscle() {
       this.$store.commit('exercises/sortByMuscle');
       this.groupedOn = 'muscle';
-    },
-  },
+    }
+  }
 };
 </script>
 <style>

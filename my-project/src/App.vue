@@ -1,20 +1,28 @@
 <template>
-  <div id="app"
-       class="text-black">
-    <nav id="navbar"
-         class="border-b border-grey-light py-4 px-6 flex">
+  <div
+    id="app"
+    class="text-black"
+  >
+    <nav
+      id="navbar"
+      class="border-b border-grey-light py-4 px-6 flex"
+    >
       <ul class="navbar-menu list-reset flex">
         <li class="mr-6">
-          <router-link class="navbar-item"
-                       exact
-                       :to="{name: 'home'}">
+          <router-link
+            class="navbar-item"
+            exact
+            :to="{name: 'home'}"
+          >
             Home
           </router-link>
         </li>
         <li class="mr-6">
-          <router-link class="navbar-item"
-                       exact
-                       :to="{name: 'gym'}">
+          <router-link
+            class="navbar-item"
+            exact
+            :to="{name: 'gym'}"
+          >
             Gym
           </router-link>
         </li>

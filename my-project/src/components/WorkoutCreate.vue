@@ -2,12 +2,11 @@
   <div>Create workout page</div>
 </template>
 
-<script>
-export default {
-  name: 'Create',
-};
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+@Component
+export default class Create extends Vue {}
 </script>
 
 <style>
-
 </style>

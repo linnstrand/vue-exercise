@@ -4,25 +4,33 @@
       <h2>{{ workout.name }}</h2>
       <div>
         <table class="table-auto">
-          <tr v-for="(exercise, index) in workout.exercises"
-              :key="index">
+          <tr
+            v-for="(exercise, index) in workout.exercises"
+            :key="index"
+          >
             <td class="pr-5">
               <h3>{{ exercise.name }}</h3>
               <div>{{ exercise.mainMuscle }}, {{ exercise.equipment }}</div>
             </td>
             <td class="pr-2">
               <label for="weight">Weight</label>
-              <input id="weight"
-                     type="number"
-                     name="weight">
+              <input
+                id="weight"
+                type="number"
+                name="weight"
+              >
             </td>
             <td class="pr-2">
-              <input id="sets"
-                     type="number"
-                     name="sets"> /
-              <input id="reps"
-                     type="number"
-                     name="reps">
+              <input
+                id="sets"
+                type="number"
+                name="sets"
+              > /
+              <input
+                id="reps"
+                type="number"
+                name="reps"
+              >
             </td>
           </tr>
         </table>
