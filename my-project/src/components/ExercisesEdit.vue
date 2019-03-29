@@ -49,7 +49,7 @@ export default class ExercisesEdit extends Vue {
     return this.$store.state.equipment.equipment || [];
   }
 
-  private newExercise!: boolean;
+  private newExercise!: Exercise | undefined;
   private editSuccess!: boolean;
   private saveSuccess!: boolean;
   private showExercises = false;
@@ -64,7 +64,7 @@ export default class ExercisesEdit extends Vue {
       // });
     }
     e.preventDefault();
-    this.newExercise = false;
+    this.newExercise = undefined;
   }
 
   editFormCheck(e: Exercise) {

@@ -11,6 +11,8 @@
         <div
           v-for="(exercise, index) in exercises"
           :key="index"
+          draggable="true"
+          @dragstart="dragStart(exercise, $event)"
           class="exercise my-3 mx-1 p-2 border border-grey shadow hover:bg-blue-lightest"
         >{{ exercise.name }}</div>
       </div>
@@ -27,45 +29,47 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
 import ExerciseListGroup from './ExerciseListGroup.vue';
+import { Exercise } from '../models/Exercise';
 
-export default {
+@Component({
   components: {
     ExerciseListGroup
-  },
-  data() {
-    return {
-      groupedOn: 'name'
-    };
-  },
-  computed: {
-    groups() {
-      return this.$store.state.exercises.groups || [];
-    },
-    exercises() {
-      return this.$store.state.exercises.all || [];
-    }
-  },
+  }
+})
+export default class ExerciseList extends Vue {
+  private groupedOn = 'name';
+
+  get groups() {
+    return this.$store.state.exercises.groups || [];
+  }
+  get exercises() {
+    return this.$store.state.exercises.all || [];
+  }
+
   created() {
     this.$store.dispatch('exercises/getAll');
-  },
-
-  methods: {
-    sortName() {
-      this.$store.commit('exercises/sortByName');
-      this.groupedOn = 'name';
-    },
-    sortByEquipment() {
-      this.$store.commit('exercises/sortByEquipment');
-      this.groupedOn = 'equipment';
-    },
-    sortByMuscle() {
-      this.$store.commit('exercises/sortByMuscle');
-      this.groupedOn = 'muscle';
-    }
   }
-};
+
+  sortName() {
+    this.$store.commit('exercises/sortByName');
+    this.groupedOn = 'name';
+  }
+  sortByEquipment() {
+    this.$store.commit('exercises/sortByEquipment');
+    this.groupedOn = 'equipment';
+  }
+  sortByMuscle() {
+    this.$store.commit('exercises/sortByMuscle');
+    this.groupedOn = 'muscle';
+  }
+
+  dragStart(exercise: Exercise, event: DragEvent) {
+    event!.dataTransfer!.setData('id', exercise._id);
+  }
+}
 </script>
 <style>
 .display-choices > button {

@@ -1,4 +1,4 @@
 export interface Equipment {
-	id: string;
+	_id: string;
 	name: string;
 }

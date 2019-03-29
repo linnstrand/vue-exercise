@@ -4,40 +4,23 @@
       <h2>{{ workout.name }}</h2>
       <div>
         <table class="table-auto">
-          <tr
-            v-for="(exercise, index) in workout.exercises"
-            :key="index"
-          >
+          <tr v-for="(exercise, index) in workout.exercises" :key="index">
             <td class="pr-5">
               <h3>{{ exercise.name }}</h3>
               <div>{{ exercise.mainMuscle }}, {{ exercise.equipment }}</div>
             </td>
             <td class="pr-2">
               <label for="weight">Weight</label>
-              <input
-                id="weight"
-                type="number"
-                name="weight"
-              >
+              <input id="weight" type="number" name="weight">
             </td>
             <td class="pr-2">
-              <input
-                id="sets"
-                type="number"
-                name="sets"
-              > /
-              <input
-                id="reps"
-                type="number"
-                name="reps"
-              >
+              <input id="sets" type="number" name="sets"> /
+              <input id="reps" type="number" name="reps">
             </td>
           </tr>
         </table>
       </div>
-      <button @click="save()">
-        Save
-      </button>
+      <button @click="save()">Save</button>
     </div>
   </div>
 </template>
@@ -49,10 +32,10 @@ export default {
   props: {
     id: {
       type: [String || Number],
-      required:true,
+      required: true,
       validator(value) {
         return Number.isInteger(Number(value));
-      },
+      }
     }
   },
   computed: {
@@ -61,13 +44,13 @@ export default {
     }
   },
   created() {
-    this.getWorkout(+this.id);
+    this.getGymProgram(+this.id);
   },
   methods: {
-    ...mapActions('gym', ['saveWorkout']),
-    ...mapActions('gym', ['getWorkout']),
+    ...mapActions('gym', ['saveGymProgram']),
+    ...mapActions('gym', ['getGymProgram']),
     save() {
-      this.saveWorkout(Object.assign({}, this.workout)).then(
+      this.saveGymProgram(Object.assign({}, this.workout)).then(
         console.log('Saved Successfully')
       );
     }

@@ -1,8 +1,8 @@
 <template>
   <div class="gym">
-    <div v-if="availableWorkouts.length > 0" class="flex flex-wrap items-stretch">
+    <div v-if="availableGymPrograms.length > 0" class="flex flex-wrap items-stretch">
       <div
-        v-for="(workout, index) in availableWorkouts"
+        v-for="(workout, index) in availableGymPrograms"
         :key="index"
         class="flex-shrink workout m-2 p-2 border border-grey hover:bg-blue-lightest"
       >
@@ -18,7 +18,7 @@
         </router-link>
       </div>
     </div>
-    <div v-if="availableWorkouts.length===0">
+    <div v-if="availableGymPrograms.length===0">
       No workouts created yet. Check out
       <router-link to="exercises">exercise list</router-link>
     </div>
@@ -32,9 +32,9 @@ import Component from 'vue-class-component';
 @Component
 export default class Gym extends Vue {
   created() {
-    this.$store.dispatch('gym/getWorkouts');
+    this.$store.dispatch('gym/getGymPrograms');
   }
-  get availableWorkouts() {
+  get availableGymPrograms() {
     return this.$store.state.gym.workouts || [];
   }
 }

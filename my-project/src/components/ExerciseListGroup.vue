@@ -5,6 +5,7 @@
       <li
         v-for="(exercise, index) in group.exercises"
         :key="index"
+        draggable="true"
         class="exercise-label bg-grey-lighter border p-1 inline-block hover:bg-blue-lightest"
       >{{ exercise.name }}</li>
     </ul>

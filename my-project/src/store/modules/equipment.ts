@@ -15,8 +15,8 @@ const mutations: MutationTree<EquipmentState> = {
 		state.equipment = equipment;
 	},
 	editName(state, item) {
-		const changed = state.equipment.find((e) => e.id === item.id);
-		if (changed && changed.id) {
+		const changed = state.equipment.find((e) => e._id === item._id);
+		if (changed && changed._id) {
 			changed.name = item.name;
 		}
 	},
@@ -24,7 +24,7 @@ const mutations: MutationTree<EquipmentState> = {
 		state.equipment.push(equipment);
 	},
 	remove(state, id) {
-		state.equipment = state.equipment.filter((e) => e.id !== id);
+		state.equipment = state.equipment.filter((e) => e._id !== id);
 	}
 };
 
