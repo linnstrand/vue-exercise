@@ -1,6 +1,16 @@
 import { Exercise } from './Exercise';
-export interface GymProgram {
-	_id: string;
-	name: string;
-	exercise: Exercise[];
+export class GymProgram {
+	type!: string;
+	_id!: string;
+	name!: string;
+	workouts: Workout[] = []
 }
+
+export class Workout {
+	type!: string;
+	dayOfWeek!: string;
+	_id!: string;
+	name!: string;
+	exercises: Exercise[] = [];
+}
+

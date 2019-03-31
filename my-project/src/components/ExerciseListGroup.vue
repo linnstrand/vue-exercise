@@ -6,6 +6,7 @@
         v-for="(exercise, index) in group.exercises"
         :key="index"
         draggable="true"
+        @dragstart="dragStart(exercise, $event)"
         class="exercise-label bg-grey-lighter border p-1 inline-block hover:bg-blue-lightest"
       >{{ exercise.name }}</li>
     </ul>
@@ -14,12 +15,15 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Exercise } from '../models/Exercise';
+
 @Component
 export default class ExerciseListGroup extends Vue {
   @Prop({ required: true }) readonly groupedOn!: string;
   @Prop({ required: true }) readonly group!: Object;
+
+  dragStart(exercise: Exercise, event: DragEvent) {
+    event!.dataTransfer!.setData('id', exercise._id);
+  }
 }
 </script>
-
-<style>
-</style>

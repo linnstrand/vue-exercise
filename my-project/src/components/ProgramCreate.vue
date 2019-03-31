@@ -10,19 +10,7 @@
         <label for="programType">Periodic Program</label>
       </div>
       <div class="program-content">
-        <div class="week-program-form" v-if="programType==='week'">
-          <div v-for="(day, index) in WEEK" :key="'d-' + index" :class="`week-day day-${index}`">
-            <h4>{{day}}</h4>
-            <input type="text" class="w-full" placeholder="Workout Name">
-          </div>
-          <div
-            v-for="nr in 7"
-            :key="nr"
-            class="day-exercise empty-day"
-            @dragover.prevent
-            @drop="dragFinish(nr, $event)"
-          ></div>
-        </div>
+        <GymProgramCreateWeek v-if="programType==='week'" :new-program="newProgram"/>
         <div class="periodic-program-form" v-if="programType==='periodic'"></div>
       </div>
     </form>
@@ -32,42 +20,56 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+import GymProgramService from '../util/GymProgramService';
+import { Exercise } from '../models/Exercise';
 import { WEEK } from '../util/constants';
+import { Workout } from '../models/GymProgram';
 import ExerciseList from '@/components/ExerciseList.vue';
-
+import { GymProgram } from '@/models/GymProgram';
+import GymProgramCreateWeek from '@/components/ProgramCreateWeek.vue';
 @Component({
   components: {
-    ExerciseList
+    ExerciseList,
+    GymProgramCreateWeek
   }
 })
 export default class GymProgramCreate extends Vue {
   private programType: string = 'week';
-  private WEEK = WEEK;
+  private newProgram: GymProgram = new GymProgram();
+  // get exercise
 
-  dragFinish(key: number, event: DragEvent) {
-    let id = event!.dataTransfer!.getData('id');
-    event.dataTransfer.clearData();
+  created() {
+    this.newProgram == new GymProgram();
+    if (this.programType === 'week') {
+      this.newProgram.workouts = WEEK.map(d => {
+        const w = new Workout();
+        w.dayOfWeek = d;
+        return w;
+      });
+    }
+  }
+
+  @Watch('programType')
+  onTypeChange(val: string, old: string) {
+    if (val === 'week' && this.newProgram.workouts.length > 7) {
+      console.error('cant change like this');
+    } else if ((val = 'week')) {
+      for (let index = 0; index < this.newProgram.workouts.length; index++) {
+        this.newProgram.workouts;
+      }
+    }
+
+    this.newProgram!.type = val;
   }
 }
 </script>
 
 <style scoped>
-.week-program-form {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: auto;
-}
-.week-program-form > * {
-  border: 1px solid black;
-}
 h4 {
   margin-bottom: 0.25em;
 }
-.week-day {
-  padding: 0.5em 0.25em;
-  text-align: center;
-}
+
 .empty-day {
   min-height: 4em;
   background-color: #cffced;
